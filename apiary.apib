@@ -97,3 +97,42 @@ HOST: http://data.gizwits.com
             {
               "updatedAt": "2011-08-20T02:06:57.931Z"
             }
+
+# Group 用电信息接口
+
+## 用电信息接口 [/1/classes/power_usage{?where,limit,order,keys}]
+
++ Parameters
+    + where (request, string, `{"did": "z9fJgw6LeZBsuFeV9PMbLA"}`)
+    + limit (optional, number, `20`) ... 返回数据的条数
+    + order (optional, string, `-date`) ... 按日期降序排序
+    + keys (optional, string, `kwhr,did,date`) ... 显示的字段
+
+### 查询设备用电信息
+
++ Request (application/json)
+
+    + Header
+    
+            X-XPG-Application-Id: {appid}
+            X-XPG-REST-API-Key: {appkey}
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "results": [
+                    {
+                        "hourly": {
+                            "15": 0
+                        },
+                        "objectId": "54251bb458ebfc3ec01cbf66",
+                        "did": "aJizfAaZTZf92UGyypeJb3",
+                        "kwhr": 0,
+                        "updatedAt": "2014-09-26T07:54:28.105Z",
+                        "date": "2014-09-26",
+                        "createdAt": "2014-09-26T07:54:28.105Z"
+                    }
+                ]
+            }
