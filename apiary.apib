@@ -5,7 +5,10 @@ HOST: http://data.gizwits.com
 
 # Group 设备信息接口
 
-## 添加设备信息 [/1/classes/device_info]
+## 添加设备信息 [/1/classes/device_info{?where}]
+
++ Parameters
+    + where (request, string, `{"username": bob}`)
 
 ### 添加设备信息 [POST]
 
@@ -35,6 +38,34 @@ HOST: http://data.gizwits.com
             {
               "createdAt": "2011-08-20T02:06:57.931Z",
               "objectId": "Ed1nuqPvcm"
+            }
+
+### 获取用户设备列表 [GET]
+
++ Request (application/json)
+
+    + Header
+    
+            X-XPG-Application-Id: {appid}
+            X-XPG-REST-API-Key: {appkey}
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "results": [
+                    {
+                        "city": "广州",
+                        "watts": 1000,
+                        "capacity": 100,
+                        "name": "my_socket",
+                        "objectId": "5424c7b358ebfc3ec01cbf5d",
+                        "did": "z9fJgw6LeZBsuFeV9PMbLA",
+                        "updatedAt": "2014-09-26T01:57:23.189Z",
+                        "createdAt": "2014-09-26T01:56:03.266Z"
+                    }
+                ]
             }
 
 
