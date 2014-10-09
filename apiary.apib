@@ -21,6 +21,7 @@ HOST: http://data.gizwits.com
 
             {
               "did": "z9fJgw6LeZBsuFeV9PMbLA",
+              "mac": "001122334455",
               "name": "my_socket",
               "capacity": 100,
               "watts": 1000,
@@ -62,6 +63,7 @@ HOST: http://data.gizwits.com
                         "name": "my_socket",
                         "objectId": "5424c7b358ebfc3ec01cbf5d",
                         "did": "z9fJgw6LeZBsuFeV9PMbLA",
+                        "mac": "001122334455",
                         "updatedAt": "2014-09-26T01:57:23.189Z",
                         "createdAt": "2014-09-26T01:56:03.266Z"
                     }
@@ -98,9 +100,26 @@ HOST: http://data.gizwits.com
               "updatedAt": "2011-08-20T02:06:57.931Z"
             }
 
+### 删除设备信息 [DELETE]
+
++ Request (application/json)
+
+    + Header
+    
+            X-XPG-Application-Id: {appid}
+            X-XPG-REST-API-Key: {appkey}
+            Content-Type: application/json
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {}
+
+
 # Group 用电信息接口
 
-## 用电信息接口 [/1/classes/power_usage{?where,limit,order,keys}]
+## 用电信息接口 [/1/power_usage{?did,date,week,month,year}]
 
 + Parameters
     + where (request, string) ... json 格式的查询条件，如 {"did": "aJizfAaZTZf92UGyypeJb3", "date": "2014-09-26"}
