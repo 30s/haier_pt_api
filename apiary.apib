@@ -22,6 +22,7 @@ HOST: http://data.gizwits.com
             {
               "did": "z9fJgw6LeZBsuFeV9PMbLA",
               "mac": "001122334455",
+              "passcode": "pass",
               "name": "my_socket",
               "capacity": 100,
               "watts": 1000,
@@ -63,6 +64,7 @@ HOST: http://data.gizwits.com
                         "name": "my_socket",
                         "objectId": "5424c7b358ebfc3ec01cbf5d",
                         "did": "z9fJgw6LeZBsuFeV9PMbLA",
+                        "passcode": "pass",
                         "mac": "001122334455",
                         "updatedAt": "2014-09-26T01:57:23.189Z",
                         "createdAt": "2014-09-26T01:56:03.266Z"
@@ -122,12 +124,13 @@ HOST: http://data.gizwits.com
 ## 用电信息接口 [/1/power_usage{?did,date,week,month,year}]
 
 + Parameters
-    + where (request, string) ... json 格式的查询条件，如 {"did": "aJizfAaZTZf92UGyypeJb3", "date": "2014-09-26"}
-    + limit (optional, number, `20`) ... 返回数据的条数
-    + order (optional, string, `-date`) ... 按日期降序排序
-    + keys (optional, string, `kwhr,did,date`) ... 显示的字段
+    + did (required, string, `did`)
+    + date (optional, string, `2014-10-10`)
+    + week (optional, int, `42`)
+    + month (optional, int, `10`)
+    + year (optional, int, `2014`)
 
-### 查询设备用电信息 [GET]
+### 获取用电信息 [GET]
 
 + Request (application/json)
 
@@ -135,23 +138,83 @@ HOST: http://data.gizwits.com
     
             X-XPG-Application-Id: {appid}
             X-XPG-REST-API-Key: {appkey}
+            Content-Type: application/json
 
 + Response 200 (application/json)
 
     + Body
     
+            {        
+                "date": "2014-10-10",
+                "did": "DNsBG72j3ntNkRyFuNAHiC",
+                "report": {
+                    "0": 0,
+                    "1": 0,
+                    "2": 0,
+                    "3": 0,
+                    "4": 0,
+                    "5": 0,
+                    "6": 0,
+                    "7": 0,
+                    "8": 0,
+                    "9": 0,
+                    "10": 0,
+                    "11": 0,
+                    "12": 0,
+                    "13": 0,
+                    "14": 0,
+                    "15": 0,
+                    "16": 0,
+                    "17": 0,
+                    "18": 0,
+                    "19": 0,
+                    "20": 0,
+                    "21": 0,
+                    "22": 0,
+                    "23": 0
+                }
+            }        
+
+## 电费信息 [/1/money_saved{?did}]
+
++ Parameters
+    + did (required, string, `did`)
+
+### 获取电费信息 [GET]
+
++ Request (application/json)
+
+    + Header
+    
+            X-XPG-Application-Id: {appid}
+            X-XPG-REST-API-Key: {appkey}
+            Content-Type: application/json
+
++ Response 200 (application/json)
+
+    + Body
+
             {
-                "results": [
-                    {
-                        "hourly": {
-                            "15": 0
-                        },
-                        "objectId": "54251bb458ebfc3ec01cbf66",
-                        "did": "aJizfAaZTZf92UGyypeJb3",
-                        "kwhr": 0,
-                        "updatedAt": "2014-09-26T07:54:28.105Z",
-                        "date": "2014-09-26",
-                        "createdAt": "2014-09-26T07:54:28.105Z"
-                    }
-                ]
+                "did": "DNsBG72j3ntNkRyFuNAHiC",
+                "total": 0,
+                "today": 0,
+                "month": 0
             }
+
+## 重置设备用电及电费信息 [/1/reset_device{?did}]
+
+### 重置设备用电及电费信息 [GET]
+
++ Request (application/json)
+
+    + Header
+    
+            X-XPG-Application-Id: {appid}
+            X-XPG-REST-API-Key: {appkey}
+            Content-Type: application/json
+
++ Response 200 (application/json)
+
+    + Body
+
+            {}
